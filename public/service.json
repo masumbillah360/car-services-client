@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Electrical System",
+    "price": 20.2,
+    "thumbnail": "./services/1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Engine Diagnostic",
+    "price": 20.2,
+    "thumbnail": "./services/2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Auto Car Repair",
+    "price": 20.2,
+    "thumbnail": "./services/3.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Electrical System",
+    "price": 20.2,
+    "thumbnail": "./services/4.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Engine Diagnostic",
+    "price": 20.2,
+    "thumbnail": "./services/5.jpg"
+  },
+  {
+    "id": 1,
+    "name": "Electrical System",
+    "price": 20.2,
+    "thumbnail": "./services/6.jpg"
+  }
+]
