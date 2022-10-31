@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import loginImage from "../../../assets/images/login/login.svg";
 
 const Login = () => {
@@ -35,9 +36,9 @@ const Login = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
+                <Link href="#" className="label-text-alt link link-hover">
                   Forgot password?
-                </a>
+                </Link>
               </label>
             </div>
             <div className="form-control mt-6">
