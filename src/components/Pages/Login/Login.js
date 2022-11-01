@@ -1,8 +1,18 @@
-import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import loginImage from "../../../assets/images/login/login.svg";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+
+  const googleHandler = () => {
+    const provider = new GoogleAuthProvider();
+    loginUser(provider)
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="hero">
       <div className="hero-content grid grid-cols-1 md:grid-cols-2">
@@ -12,6 +22,7 @@ const Login = () => {
         <div className="card shadow-2xl bg-base-100 p-16">
           <form className="card-body">
             <h1 className="font-bold text-4xl text-center">Login</h1>
+            <button onClick={googleHandler}>Google</button>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>

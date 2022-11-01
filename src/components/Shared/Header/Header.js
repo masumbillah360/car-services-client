@@ -3,10 +3,12 @@ import { ImSun } from "react-icons/im";
 import { RiMoonFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import { ThemeContext } from "../../../context/ThemeProvider/ThemeProvider";
 
 const Header = () => {
   const { dark, setDark } = useContext(ThemeContext);
+  const { user } = useContext(AuthContext);
   const toggleDark = () => {
     setDark(!dark);
   };
@@ -38,6 +40,9 @@ const Header = () => {
       </li>
       <li className="font-semibold">
         <Link to="/register">Register</Link>
+      </li>
+      <li className="font-semibold">
+        <Link to="/register">{user.name}</Link>
       </li>
     </>
   );
