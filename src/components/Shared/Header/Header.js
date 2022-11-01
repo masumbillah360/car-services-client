@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 import { ImSun } from "react-icons/im";
 import { RiMoonFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -8,9 +9,12 @@ import { ThemeContext } from "../../../context/ThemeProvider/ThemeProvider";
 
 const Header = () => {
   const { dark, setDark } = useContext(ThemeContext);
-  const { user } = useContext(AuthContext);
+  const { user, setUser, logOutUser } = useContext(AuthContext);
   const toggleDark = () => {
     setDark(!dark);
+  };
+  const logOut = () => {
+    logOutUser().then(setUser(null)).catch(setUser(null));
   };
   const themeBtn = (
     <button onClick={toggleDark}>
@@ -36,14 +40,24 @@ const Header = () => {
         <Link to="/">Blog</Link>
       </li>
       <li className="font-semibold">
-        <Link to="/login">Login</Link>
+        <Link to="/register">{user?.displayName}</Link>
       </li>
-      <li className="font-semibold">
-        <Link to="/register">Register</Link>
-      </li>
-      <li className="font-semibold">
-        <Link to="/register">{user.name}</Link>
-      </li>
+      {user?.uid ? (
+        <li className="font-semibold">
+          <button onClick={logOut}>
+            Log Out <FaArrowAltCircleRight></FaArrowAltCircleRight>{" "}
+          </button>
+        </li>
+      ) : (
+        <>
+          <li className="font-semibold">
+            <Link to="/login">Login</Link>
+          </li>
+          <li className="font-semibold">
+            <Link to="/register">Register</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (

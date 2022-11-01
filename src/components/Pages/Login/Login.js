@@ -5,13 +5,23 @@ import loginImage from "../../../assets/images/login/login.svg";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginGoogle, setUser, loginEmailPass } = useContext(AuthContext);
 
   const googleHandler = () => {
     const provider = new GoogleAuthProvider();
-    loginUser(provider)
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
+    loginGoogle(provider)
+      .then((result) => setUser(result.user))
+      .catch((error) => setUser(null));
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    loginEmailPass(email, password)
+      .then((result) => setUser(result.user))
+      .catch((error) => setUser(null));
   };
   return (
     <div className="hero">
@@ -20,9 +30,9 @@ const Login = () => {
           <img src={loginImage} alt="loginimage" />
         </div>
         <div className="card shadow-2xl bg-base-100 p-16">
-          <form className="card-body">
+          <button onClick={googleHandler}>Google</button>
+          <form onSubmit={handleLogin} className="card-body">
             <h1 className="font-bold text-4xl text-center">Login</h1>
-            <button onClick={googleHandler}>Google</button>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>

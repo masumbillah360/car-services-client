@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import loginImage from "../../../assets/images/login/login.svg";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const { singnInUser, setUser, updateUser } = useContext(AuthContext);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    singnInUser(email, password)
+      .then((result) => {
+        handleUpdateUser(name);
+        setUser(result.user);
+      })
+      .catch((err) => setUser(null));
+  };
+
+  const handleUpdateUser = (name) => {
+    const profile = {
+      displayName: name,
+    };
+    updateUser(profile)
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="hero">
       <div className="hero-content grid grid-cols-1 md:grid-cols-2">
@@ -10,7 +35,7 @@ const Register = () => {
           <img src={loginImage} alt="loginimage" />
         </div>
         <div className="card shadow-2xl bg-base-100 p-16">
-          <form className="card-body">
+          <form onSubmit={handleSubmit} className="card-body">
             <h1 className="font-bold text-4xl text-center">Sign Up</h1>
             <div className="form-control">
               <label className="label">
@@ -49,7 +74,11 @@ const Register = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="Login" />
+              <input
+                className="btn btn-primary"
+                type="submit"
+                value="Register"
+              />
             </div>
           </form>
           <p>
