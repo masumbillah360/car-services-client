@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { ImSun } from "react-icons/im";
 import { RiMoonFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
+import { ThemeContext } from "../../../context/ThemeProvider/ThemeProvider";
 
 const Header = () => {
-  const [dark, setDark] = useState(false);
+  const { dark, setDark } = useContext(ThemeContext);
   const toggleDark = () => {
     setDark(!dark);
   };
