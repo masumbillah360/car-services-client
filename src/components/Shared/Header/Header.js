@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { ImSun } from "react-icons/im";
+import { RiMoonFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 
 const Header = () => {
+  const [dark, setDark] = useState(false);
+  const toggleDark = () => {
+    setDark(!dark);
+  };
+  const themeBtn = (
+    <button onClick={toggleDark}>
+      {dark ? (
+        <ImSun className="text-4xl rounded-full bg-slate-700 text-white p-1" />
+      ) : (
+        <RiMoonFill className="text-4xl rounded-full border-2 text-slate-800 p-1" />
+      )}
+    </button>
+  );
   const menuItems = (
     <>
       <li className="font-semibold">
@@ -60,6 +75,7 @@ const Header = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
+        <span className="mr-5">{themeBtn}</span>
         <Link to="/" className="btn btn-outline btn-error">
           Appointment
         </Link>
