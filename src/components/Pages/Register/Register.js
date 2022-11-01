@@ -47,16 +47,20 @@ const Register = () => {
                 placeholder="password"
                 className="input input-bordered"
               />
-              <label className="label">
-                <Link to="/" className="label-text-alt link link-hover">
-                  Forgot password?
-                </Link>
-              </label>
             </div>
             <div className="form-control mt-6">
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
           </form>
+          <p>
+            Alreadey Have an Account
+            <Link
+              to="/login"
+              className="underline ml-5 font-bold text-orange-600"
+            >
+              Login Please
+            </Link>
+          </p>
         </div>
       </div>
     </div>

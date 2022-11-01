@@ -45,6 +45,15 @@ const Login = () => {
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
           </form>
+          <p>
+            Don't Have an Account
+            <Link
+              to="/register"
+              className="underline ml-5 font-bold text-orange-600"
+            >
+              Register Please
+            </Link>
+          </p>
         </div>
       </div>
     </div>
