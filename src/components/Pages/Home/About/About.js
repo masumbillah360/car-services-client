@@ -4,7 +4,7 @@ import person from "../../../../assets/images/about_us/person.jpg";
 
 const About = () => {
   return (
-    <div className="hero">
+    <div id="about-section" className="hero">
       <div className="hero-content">
         <div className="relative w-1/2">
           <img
