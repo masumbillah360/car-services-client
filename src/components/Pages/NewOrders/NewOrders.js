@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const NewOrders = () => {
+  const { user } = useContext(AuthContext);
   const handleNewOrders = (e) => {
     e.preventDefault();
   };
@@ -33,6 +35,7 @@ const NewOrders = () => {
             type="text"
             required
             name="email"
+            defaultValue={user?.email}
             placeholder="Email"
             className="input input-bordered input-info w-full"
           />

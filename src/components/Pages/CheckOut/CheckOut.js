@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 
 const CheckOut = () => {
+  const { user } = useContext(AuthContext);
   const serviceData = useLoaderData();
   const navigate = useNavigate();
+  const { title, price, img } = serviceData;
   console.log(serviceData);
   const handleCheckOut = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const fName = form.firstName.value;
+    const lName = form.lastName.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const message = form.message.value;
+    const serviceInfo = {
+      name: `${fName} ${lName}`,
+      email,
+      phone,
+      title,
+      price,
+      img,
+      message,
+    };
+    fetch("http://localhost:5000/userservices", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(serviceInfo),
+    });
+    console.log(serviceInfo);
     navigate("/newoerders");
   };
   return (
@@ -37,6 +63,8 @@ const CheckOut = () => {
           type="text"
           required
           name="email"
+          defaultValue={user?.email}
+          readOnly
           placeholder="Your Email"
           className="input input-bordered input-info w-full"
         />

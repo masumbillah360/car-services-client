@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import AllOrders from "../components/Pages/AllOrders/AllOrders";
 import CheckOut from "../components/Pages/CheckOut/CheckOut";
 import Home from "../components/Pages/Home/Home";
 import Login from "../components/Pages/Login/Login";
@@ -7,6 +8,7 @@ import Register from "../components/Pages/Register/Register";
 import ServicesCheckOut from "../components/Pages/ServicesCheckOut/ServicesCheckOut";
 import Main from "../Layout/Main";
 import Secondary from "../Layout/Secondary";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -16,20 +18,40 @@ export const router = createBrowserRouter([
       { path: "/", element: <Home></Home> },
       {
         path: "/services/:id",
-        element: <ServicesCheckOut />,
+        element: (
+          <PrivateRoute>
+            <ServicesCheckOut />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
       },
       {
         path: "/checkout/:id",
-        element: <CheckOut />,
+        element: (
+          <PrivateRoute>
+            <CheckOut />
+          </PrivateRoute>
+        ),
         loader: ({ params }) => {
           return fetch(`http://localhost:5000/services/${params.id}`);
         },
       },
       {
         path: "/newoerders",
-        element: <NewOrders />,
+        element: (
+          <PrivateRoute>
+            <NewOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "allorders",
+        element: (
+          <PrivateRoute>
+            <AllOrders />
+          </PrivateRoute>
+        ),
       },
     ],
   },
