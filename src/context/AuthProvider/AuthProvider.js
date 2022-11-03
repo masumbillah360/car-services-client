@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  console.log(user);
+  // console.log(user);
 
   const loginGoogle = (provider) => {
     return signInWithPopup(auth, provider);
@@ -32,8 +32,8 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUser = (profile) => {
-    console.log(profile);
-    return updateProfile(auth.currentUser,  profile );
+    // console.log(profile);
+    return updateProfile(auth.currentUser, profile);
   };
 
   const logOutUser = () => {

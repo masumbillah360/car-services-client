@@ -3,9 +3,9 @@ import ServicesItem from "./ServicesItem/ServicesItem";
 
 const Services = () => {
   const [services, setServices] = useState([]);
-  console.log(services);
+  // console.log(services);
   useEffect(() => {
-    fetch("service.json")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -21,8 +21,8 @@ const Services = () => {
         </p>
       </div>
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services?.map((service, idx) => (
-          <ServicesItem key={idx} service={service}></ServicesItem>
+        {services?.map((service) => (
+          <ServicesItem key={service._id} service={service}></ServicesItem>
         ))}
       </div>
       <div className="text-center mt-12">

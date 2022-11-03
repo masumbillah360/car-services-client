@@ -20,8 +20,8 @@ const Products = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <ProductItem key={product.id} product={product}></ProductItem>
+        {products.map((product, idx) => (
+          <ProductItem key={idx} product={product}></ProductItem>
         ))}
       </div>
       <div className="text-center mt-12">

@@ -10,8 +10,8 @@ const ProductItem = ({ product }) => {
       </figure>
       <div className="card-body items-center text-center">
         <div className="flex">
-          {rating.map((rat) => (
-            <FaStar className="text-yellow-500"></FaStar>
+          {rating.map((rat, idx) => (
+            <FaStar key={idx} className="text-yellow-500"></FaStar>
           ))}
         </div>
         <h2 className="card-title">{name}</h2>

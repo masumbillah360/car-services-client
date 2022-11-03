@@ -13,13 +13,13 @@ const Team = () => {
       thumbnail: team1,
     },
     {
-      id: 1,
+      id: 2,
       name: "Halum Mama",
       expert: "Engine Expert",
       thumbnail: team2,
     },
     {
-      id: 1,
+      id: 3,
       name: "Mhon Koe",
       expert: "Engine Expert",
       thumbnail: team3,
@@ -37,8 +37,8 @@ const Team = () => {
         </p>
       </div>
       <div className="grid grid-cols-1, justify-center md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {teamMember.map((member) => (
-          <TeamMember id={member.id} memberInfo={member}></TeamMember>
+        {teamMember.map((member, idx) => (
+          <TeamMember key={member.id} memberInfo={member}></TeamMember>
         ))}
       </div>
     </div>
